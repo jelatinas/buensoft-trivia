@@ -1,0 +1,1106 @@
+{
+  "titulo_libro": "Cultura General - Parte 2",
+  "descripcion": "Segundo cuestionario de 100 preguntas de opción múltiple y verdadero o falso sobre cultura general, ciencia, historia, geografía y arte.",
+  "preguntas": [
+    {
+      "id": "OM01",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Cuál es la capital de Nueva Zelanda?",
+      "opciones": [
+        "Wellington",
+        "Auckland",
+        "Christchurch",
+        "Queenstown"
+      ],
+      "explicacion": "Fue designada capital en 1865 debido a su ubicación céntrica en el estrecho de Cook, entre las islas Norte y Sur."
+    },
+    {
+      "id": "OM02",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿En qué año comenzó la Segunda Guerra Mundial?",
+      "opciones": [
+        "1939",
+        "1938",
+        "1940",
+        "1941"
+      ],
+      "explicacion": "El conflicto se inició el 1 de septiembre de 1939 con la invasión alemana de Polonia y la posterior declaración de guerra de Francia y Reino Unido."
+    },
+    {
+      "id": "OM03",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Cuál es el símbolo químico del potasio?",
+      "opciones": [
+        "K",
+        "P",
+        "Po",
+        "Pt"
+      ],
+      "explicacion": "Su símbolo deriva del término neolatino 'kalium', que a su vez proviene del árabe 'al-qalyah', referido a las cenizas de plantas."
+    },
+    {
+      "id": "OM04",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Quién pintó la obra 'La noche estrellada' en 1889?",
+      "opciones": [
+        "Vincent van Gogh",
+        "Claude Monet",
+        "Pablo Picasso",
+        "Paul Cézanne"
+      ],
+      "explicacion": "El artista neerlandés pintó este célebre lienzo desde la ventana de su habitación en el sanatorio de Saint-Rémy-de-Provence."
+    },
+    {
+      "id": "OM05",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Cuál es el planeta con mayor número de lunas conocidas en el sistema solar?",
+      "opciones": [
+        "Saturno",
+        "Júpiter",
+        "Urano",
+        "Neptuno"
+      ],
+      "explicacion": "Saturno cuenta con más de 140 satélites naturales confirmados, incluyendo a Titán y Encélado."
+    },
+    {
+      "id": "OM06",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Qué escritor griego antiguo es considerado el autor de 'La Ilíada' y 'La Odisea'?",
+      "opciones": [
+        "Homero",
+        "Sófocles",
+        "Eurípides",
+        "Hesíodo"
+      ],
+      "explicacion": "A este aedo del siglo VIII a. C. se le atribuye la composición de los dos grandes poemas épicos fundacionales de la literatura occidental."
+    },
+    {
+      "id": "OM07",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Cuál es la ciudad más poblada de América del Sur?",
+      "opciones": [
+        "São Paulo",
+        "Buenos Aires",
+        "Lima",
+        "Bogotá"
+      ],
+      "explicacion": "Esta metrópolis brasileña supera los 11 millones de habitantes en su municipio y más de 21 millones en su área metropolitana."
+    },
+    {
+      "id": "OM08",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Qué científico descubrió las leyes de la herencia genética mediante experimentos con guisantes?",
+      "opciones": [
+        "Gregor Mendel",
+        "Charles Darwin",
+        "Thomas Hunt Morgan",
+        "James Watson"
+      ],
+      "explicacion": "El monje agustino publicó sus hallazgos en 1866 tras cruzar miles de plantas de Pisum sativum en el jardín de su monasterio."
+    },
+    {
+      "id": "OM09",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿En qué país se originaron los Juegos Olímpicos de la Antigüedad?",
+      "opciones": [
+        "Grecia",
+        "Italia",
+        "Egipto",
+        "Turquía"
+      ],
+      "explicacion": "Se celebraban cada cuatro años en el santuario de Olimpia desde el año 776 a. C. en honor al dios Zeus."
+    },
+    {
+      "id": "OM10",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Cuál es la unidad básica de la herencia biológica en los seres vivos?",
+      "opciones": [
+        "Gen",
+        "Cromosoma",
+        "Ribosoma",
+        "Enzima"
+      ],
+      "explicacion": "Es un segmento específico de ADN que contiene las instrucciones moleculares necesarias para sintetizar proteínas o moléculas funcionales."
+    },
+    {
+      "id": "OM11",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Qué cordillera separa Europa de Asia?",
+      "opciones": [
+        "Montes Urales",
+        "Montes Cáucaso",
+        "Alpes",
+        "Cárpatos"
+      ],
+      "explicacion": "Esta cadena montañosa se extiende de norte a sur a través de Rusia occidental hasta la frontera con Kazajistán."
+    },
+    {
+      "id": "OM12",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Quién compuso la 'Novena Sinfonía' que incluye el 'Himno a la Alegría'?",
+      "opciones": [
+        "Ludwig van Beethoven",
+        "Wolfgang Amadeus Mozart",
+        "Franz Schubert",
+        "Johannes Brahms"
+      ],
+      "explicacion": "El compositor alemán estrenó esta obra monumental en Viena en 1824 cuando ya padecía una sordera casi total."
+    },
+    {
+      "id": "OM13",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Cuál es el órgano más grande del cuerpo humano?",
+      "opciones": [
+        "La piel",
+        "El hígado",
+        "El intestino delgado",
+        "Los pulmones"
+      ],
+      "explicacion": "Cubre alrededor de dos metros cuadrados en un adulto y actúa como barrera protectora, reguladora térmica y órgano sensorial."
+    },
+    {
+      "id": "OM14",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Qué imperio construyó la red de calzadas conocida como la Vía Apia?",
+      "opciones": [
+        "Imperio romano",
+        "Imperio bizantino",
+        "Imperio otomano",
+        "Imperio carolingio"
+      ],
+      "explicacion": "Iniciada en el año 312 a. C. por el censor Apio Claudio Ciego, conectaba Roma con el puerto estratégico de Bríndisi."
+    },
+    {
+      "id": "OM15",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Cuál es la moneda oficial del Reino Unido?",
+      "opciones": [
+        "Libra esterlina",
+        "Euro",
+        "Franco británico",
+        "Dólar inglés"
+      ],
+      "explicacion": "Es la divisa en circulación más antigua del mundo que aún sigue utilizándose de forma ininterrumpida."
+    },
+    {
+      "id": "OM16",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Qué planeta del sistema solar es conocido como el 'planeta rojo'?",
+      "opciones": [
+        "Marte",
+        "Mercurio",
+        "Júpiter",
+        "Venus"
+      ],
+      "explicacion": "Su característico color rojizo se debe a la abundante presencia de óxido de hierro en el polvo y las rocas de su superficie."
+    },
+    {
+      "id": "OM17",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Quién escribió la novela distópica '1984'?",
+      "opciones": [
+        "George Orwell",
+        "Aldous Huxley",
+        "Ray Bradbury",
+        "H. G. Wells"
+      ],
+      "explicacion": "Publicada en 1949, introdujo conceptos culturales como el Gran Hermano, la neolengua y la vigilancia estatal totalitaria."
+    },
+    {
+      "id": "OM18",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Cuál es el océano más extenso y profundo de la Tierra?",
+      "opciones": [
+        "Océano Pacífico",
+        "Océano Atlántico",
+        "Océano Índico",
+        "Océano Antártico"
+      ],
+      "explicacion": "Cubre aproximadamente un tercio de la superficie terrestre y alberga la fosa de las Marianas, el punto más profundo conocido."
+    },
+    {
+      "id": "OM19",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Qué instrumento óptico permite observar objetos muy lejanos como estrellas y galaxias?",
+      "opciones": [
+        "Telescopio",
+        "Microscopio",
+        "Periscopio",
+        "Estetoscopio"
+      ],
+      "explicacion": "Recoge y enfoca la radiación electromagnética mediante lentes o espejos para ampliar la imagen de cuerpos celestes."
+    },
+    {
+      "id": "OM20",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿En qué país se encuentra el templo de Angkor Wat?",
+      "opciones": [
+        "Camboya",
+        "Tailandia",
+        "Vietnam",
+        "Laos"
+      ],
+      "explicacion": "Construido en el siglo XII durante el Imperio jemer, es considerado la estructura religiosa más grande del mundo."
+    },
+    {
+      "id": "OM21",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Cuál es el componente principal del vidrio común?",
+      "opciones": [
+        "Dióxido de silicio (sílice)",
+        "Carbonato de calcio",
+        "Óxido de aluminio",
+        "Sulfato de sodio"
+      ],
+      "explicacion": "Se obtiene fundiendo arena rica en sílice a temperaturas superiores a 1.500 °C junto con fundentes como la sosa y la cal."
+    },
+    {
+      "id": "OM22",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Quién fue el líder sudafricano que luchó contra el apartheid y se convirtió en presidente en 1994?",
+      "opciones": [
+        "Nelson Mandela",
+        "Desmond Tutu",
+        "Steve Biko",
+        "Thabo Mbeki"
+      ],
+      "explicacion": "Tras pasar 27 años encarcelado por su activismo contra la segregación racial, ganó las primeras elecciones multirraciales de su país."
+    },
+    {
+      "id": "OM23",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Cuántos dientes permanentes tiene normalmente un ser humano adulto?",
+      "opciones": [
+        "32",
+        "28",
+        "30",
+        "36"
+      ],
+      "explicacion": "Esta dentición completa incluye ocho incisivos, cuatro caninos, ocho premolares y doce molares, contando las cuatro muelas del juicio."
+    },
+    {
+      "id": "OM24",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Cuál es la capital de Corea del Sur?",
+      "opciones": [
+        "Seúl",
+        "Busan",
+        "Incheon",
+        "Pionyang"
+      ],
+      "explicacion": "Situada a orillas del río Han en el noroeste del país, es una de las mayores áreas metropolitanas tecnológicas de Asia."
+    },
+    {
+      "id": "OM25",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Qué pintor español creó el famoso cuadro antibélico 'Guernica' en 1937?",
+      "opciones": [
+        "Pablo Picasso",
+        "Salvador Dalí",
+        "Joan Miró",
+        "Francisco de Goya"
+      ],
+      "explicacion": "Fue pintado tras el bombardeo de la localidad vasca homónima durante la Guerra Civil Española y se exhibe en el Museo Reina Sofía."
+    },
+    {
+      "id": "OM26",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Cuál es el ave más grande del mundo que no puede volar?",
+      "opciones": [
+        "Avestruz",
+        "Emú",
+        "Casuario",
+        "Pingüino emperador"
+      ],
+      "explicacion": "Originaria de África, puede alcanzar hasta 2,75 metros de altura y superar los 150 kilogramos de peso."
+    },
+    {
+      "id": "OM27",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Qué escala se utiliza habitualmente para medir la acidez o alcalinidad de una disolución?",
+      "opciones": [
+        "Escala de pH",
+        "Escala de Richter",
+        "Escala de Mohs",
+        "Escala Kelvin"
+      ],
+      "explicacion": "Va generalmente de 0 a 14, siendo 7 el valor neutro correspondiente al agua pura a 25 °C."
+    },
+    {
+      "id": "OM28",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿En qué año se descubrió América por la expedición encabezada por Cristóbal Colón?",
+      "opciones": [
+        "1492",
+        "1488",
+        "1498",
+        "1500"
+      ],
+      "explicacion": "La expedición patrocinada por los Reyes Católicos desembarcó en la isla de Guanahani el 12 de octubre de ese año."
+    },
+    {
+      "id": "OM29",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Cuál es la capital de Argentina?",
+      "opciones": [
+        "Buenos Aires",
+        "Córdoba",
+        "Rosario",
+        "Mendoza"
+      ],
+      "explicacion": "Ubicada en la ribera occidental del Río de la Plata, constituye una ciudad autónoma y el principal centro cultural y económico del país."
+    },
+    {
+      "id": "OM30",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Qué científico formuló el principio de flotabilidad de los cuerpos en un fluido?",
+      "opciones": [
+        "Arquímedes",
+        "Pitágoras",
+        "Euclides",
+        "Tales de Mileto"
+      ],
+      "explicacion": "El sabio de Siracusa estableció que todo cuerpo sumergido experimenta un empuje vertical hacia arriba igual al peso del fluido desalojado."
+    },
+    {
+      "id": "OM31",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Cuál es el libro sagrado del islam?",
+      "opciones": [
+        "El Corán",
+        "La Torá",
+        "Los Vedas",
+        "El Tripitaka"
+      ],
+      "explicacion": "Los musulmanes lo consideran la palabra literal de Dios revelada al profeta Mahoma a través del arcángel Gabriel."
+    },
+    {
+      "id": "OM32",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Qué tipo de roca es el mármol?",
+      "opciones": [
+        "Metamórfica",
+        "Ígnea",
+        "Sedimentaria",
+        "Volcánica"
+      ],
+      "explicacion": "Se forma a partir de rocas calizas sometidas a elevadas temperaturas y presiones en el interior de la corteza terrestre."
+    },
+    {
+      "id": "OM33",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Cuál es la isla más grande del mundo que no es considerada un continente?",
+      "opciones": [
+        "Groenlandia",
+        "Nueva Guinea",
+        "Borneo",
+        "Madagascar"
+      ],
+      "explicacion": "Con más de 2,16 millones de kilómetros cuadrados, está situada entre los océanos Atlántico y Ártico y pertenece al Reino de Dinamarca."
+    },
+    {
+      "id": "OM34",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Quién escribió la obra 'El Principito'?",
+      "opciones": [
+        "Antoine de Saint-Exupéry",
+        "Jules Verne",
+        "Victor Hugo",
+        "Albert Camus"
+      ],
+      "explicacion": "El aviador y escritor francés publicó esta novela corta ilustrada por él mismo en 1943 durante su estancia en Estados Unidos."
+    },
+    {
+      "id": "OM35",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Qué pigmento otorga el color verde a las hojas de las plantas?",
+      "opciones": [
+        "Clorofila",
+        "Melanina",
+        "Hemoglobina",
+        "Caroteno"
+      ],
+      "explicacion": "Esta biomolécula absorbe principalmente luz azul y roja del espectro solar, reflejando la luz verde."
+    },
+    {
+      "id": "OM36",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿En qué país se encuentra la ciudad histórica de Petra, excavada en la roca?",
+      "opciones": [
+        "Jordania",
+        "Siria",
+        "Irak",
+        "Líbano"
+      ],
+      "explicacion": "Fue fundada por los nabateos alrededor del siglo IV a. C. en un valle desértico del suroeste jordano."
+    },
+    {
+      "id": "OM37",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Cuántos jugadores por equipo están en el campo simultáneamente en un partido oficial de fútbol?",
+      "opciones": [
+        "Once",
+        "Nueve",
+        "Diez",
+        "Doce"
+      ],
+      "explicacion": "Según las reglas de la FIFA, cada equipo alinea a diez jugadores de campo y un guardameta."
+    },
+    {
+      "id": "OM38",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Cuál es la capital de Noruega?",
+      "opciones": [
+        "Oslo",
+        "Estocolmo",
+        "Helsinki",
+        "Copenhague"
+      ],
+      "explicacion": "Se sitúa en el extremo norte del fiordo homónimo y es la sede anual de la entrega del Premio Nobel de la Paz."
+    },
+    {
+      "id": "OM39",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Qué partículas subatómicas tienen carga eléctrica negativa?",
+      "opciones": [
+        "Electrones",
+        "Protones",
+        "Neutrones",
+        "Positrones"
+      ],
+      "explicacion": "Orbitan alrededor del núcleo atómico y son responsables de la formación de enlaces químicos y la corriente eléctrica."
+    },
+    {
+      "id": "OM40",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Quién fue el emperador azteca cuando Hernán Cortés llegó a Tenochtitlán en 1519?",
+      "opciones": [
+        "Moctezuma II",
+        "Cuauhtémoc",
+        "Cuitláhuac",
+        "Itzcóatl"
+      ],
+      "explicacion": "Gobernó el Imperio mexica entre 1502 y 1520, periodo en el que alcanzó su máxima expansión territorial."
+    },
+    {
+      "id": "OM41",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Qué instrumento musical de viento-madera utiliza una lengüeta doble y es clave en la orquesta sinfónica?",
+      "opciones": [
+        "Oboe",
+        "Clarinete",
+        "Flauta travesera",
+        "Saxofón"
+      ],
+      "explicacion": "Su sonido penetrante y estable lo convierte en el instrumento encargado de dar la nota 'la' para afinar al resto de la orquesta."
+    },
+    {
+      "id": "OM42",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Cuál es el país con más husos horarios en el mundo debido a sus territorios de ultramar?",
+      "opciones": [
+        "Francia",
+        "Rusia",
+        "Estados Unidos",
+        "Reino Unido"
+      ],
+      "explicacion": "Contando sus departamentos y colectividades repartidos por todos los océanos, abarca doce zonas horarias distintas."
+    },
+    {
+      "id": "OM43",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Qué vitamina se encuentra en abundancia en los cítricos y previene el escorbuto?",
+      "opciones": [
+        "Vitamina C",
+        "Vitamina K",
+        "Vitamina E",
+        "Vitamina B1"
+      ],
+      "explicacion": "También llamada ácido ascórbico, es indispensable para la síntesis de colágeno y el mantenimiento de los tejidos conectivos."
+    },
+    {
+      "id": "OM44",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Cuál es la capital de Grecia?",
+      "opciones": [
+        "Atenas",
+        "Salónica",
+        "Esparta",
+        "Patras"
+      ],
+      "explicacion": "Considerada la cuna de la democracia y la filosofía occidental, está dominada por la antigua ciudadela de la Acrópolis."
+    },
+    {
+      "id": "OM45",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Qué galaxia espiral es la más cercana de gran tamaño a la Vía Láctea?",
+      "opciones": [
+        "Andrómeda",
+        "Galaxia del Triángulo",
+        "Galaxia del Sombrero",
+        "Gran Nube de Magallanes"
+      ],
+      "explicacion": "Situada a unos 2,5 millones de años luz de distancia, es visible a simple vista en cielos oscuros y se acerca lentamente a nuestra galaxia."
+    },
+    {
+      "id": "OM46",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Quién inventó la imprenta moderna de tipos móviles en Europa alrededor de 1440?",
+      "opciones": [
+        "Johannes Gutenberg",
+        "Leonardo da Vinci",
+        "Francis Bacon",
+        "Erasmo de Róterdam"
+      ],
+      "explicacion": "El orfebre alemán revolucionó la difusión del conocimiento al imprimir la célebre Biblia de 42 líneas en Maguncia."
+    },
+    {
+      "id": "OM47",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Cuál es el continente más pequeño del mundo en superficie terrestre?",
+      "opciones": [
+        "Oceanía",
+        "Europa",
+        "Antártida",
+        "América del Sur"
+      ],
+      "explicacion": "Con unos 8,5 millones de kilómetros cuadrados, está dominado territorialmente por Australia y miles de islas del Pacífico."
+    },
+    {
+      "id": "OM48",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Qué gas es el principal responsable del efecto invernadero provocado por la actividad humana?",
+      "opciones": [
+        "Dióxido de carbono",
+        "Helio",
+        "Ozono",
+        "Hidrógeno"
+      ],
+      "explicacion": "La quema de combustibles fósiles libera grandes cantidades de CO2 que retienen radiación infrarroja en la atmósfera."
+    },
+    {
+      "id": "OM49",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿En qué deporte destacó mundialmente el atleta jamaicano Usain Bolt?",
+      "opciones": [
+        "Atletismo (carreras de velocidad)",
+        "Natación",
+        "Ciclismo en pista",
+        "Salto de longitud"
+      ],
+      "explicacion": "Posee los récords mundiales de los 100 metros lisos (9,58 s) y los 200 metros lisos (19,19 s), además de ocho oros olímpicos."
+    },
+    {
+      "id": "OM50",
+      "tipo": "opcion_multiple",
+      "pregunta": "¿Cuál es la capital de Kenia?",
+      "opciones": [
+        "Nairobi",
+        "Mombasa",
+        "Kisumu",
+        "Kampala"
+      ],
+      "explicacion": "Fundada en 1899 como depósito ferroviario, alberga hoy un parque nacional dentro de sus propios límites metropolitanos."
+    },
+    {
+      "id": "VF01",
+      "tipo": "verdadero_falso",
+      "pregunta": "La Luna produce luz propia gracias a reacciones nucleares en su núcleo.",
+      "opciones": [
+        "Falso",
+        "Verdadero"
+      ],
+      "explicacion": "Es un satélite rocoso sin luz propia; brilla en el cielo nocturno porque su superficie refleja la luz proveniente del Sol."
+    },
+    {
+      "id": "VF02",
+      "tipo": "verdadero_falso",
+      "pregunta": "El río Nilo desemboca en el mar Mediterráneo.",
+      "opciones": [
+        "Verdadero",
+        "Falso"
+      ],
+      "explicacion": "Fluye de sur a norte a través del noreste de África hasta formar un extenso delta en el norte de Egipto."
+    },
+    {
+      "id": "VF03",
+      "tipo": "verdadero_falso",
+      "pregunta": "Las arañas son insectos.",
+      "opciones": [
+        "Falso",
+        "Verdadero"
+      ],
+      "explicacion": "Pertenecen a la clase de los arácnidos; a diferencia de los insectos, tienen ocho patas, dos segmentos corporales y carecen de antenas."
+    },
+    {
+      "id": "VF04",
+      "tipo": "verdadero_falso",
+      "pregunta": "El oro es un metal que no se oxida ni se corroe fácilmente en contacto con el aire o el agua.",
+      "opciones": [
+        "Verdadero",
+        "Falso"
+      ],
+      "explicacion": "Por su elevada estabilidad química se clasifica como un metal noble, conservando su brillo metálico durante milenios."
+    },
+    {
+      "id": "VF05",
+      "tipo": "verdadero_falso",
+      "pregunta": "La capital de Marruecos es Casablanca.",
+      "opciones": [
+        "Falso",
+        "Verdadero"
+      ],
+      "explicacion": "Casablanca es la ciudad más grande y el centro económico, pero la capital administrativa y política del país es Rabat."
+    },
+    {
+      "id": "VF06",
+      "tipo": "verdadero_falso",
+      "pregunta": "El cerebro humano está compuesto en más de un 70% por agua.",
+      "opciones": [
+        "Verdadero",
+        "Falso"
+      ],
+      "explicacion": "Aproximadamente el 73% de la masa cerebral corresponde a agua, fundamental para la transmisión eléctrica y el metabolismo neuronal."
+    },
+    {
+      "id": "VF07",
+      "tipo": "verdadero_falso",
+      "pregunta": "Los toros se enfurecen específicamente al ver el color rojo del capote.",
+      "opciones": [
+        "Falso",
+        "Verdadero"
+      ],
+      "explicacion": "Los bovinos son dicromáticos y no distinguen el rojo; reaccionan ante el movimiento brusco de la tela."
+    },
+    {
+      "id": "VF08",
+      "tipo": "verdadero_falso",
+      "pregunta": "La Torre Eiffel fue construida originalmente como arco de entrada para la Exposición Universal de París de 1889.",
+      "opciones": [
+        "Verdadero",
+        "Falso"
+      ],
+      "explicacion": "Diseñada por el ingeniero Gustave Eiffel, conmemoraba el centenario de la Revolución francesa y estuvo prevista para ser desmontada tras 20 años."
+    },
+    {
+      "id": "VF09",
+      "tipo": "verdadero_falso",
+      "pregunta": "El hielo es más denso que el agua líquida.",
+      "opciones": [
+        "Falso",
+        "Verdadero"
+      ],
+      "explicacion": "Al congelarse, las moléculas de agua forman una estructura cristalina hexagonal más abierta, lo que hace que el hielo flote sobre el agua líquida."
+    },
+    {
+      "id": "VF10",
+      "tipo": "verdadero_falso",
+      "pregunta": "El español es el idioma oficial de la mayoría de los países de América del Sur.",
+      "opciones": [
+        "Verdadero",
+        "Falso"
+      ],
+      "explicacion": "Nueve de los doce Estados soberanos sudamericanos tienen el español como lengua oficial o cooficial."
+    },
+    {
+      "id": "VF11",
+      "tipo": "verdadero_falso",
+      "pregunta": "La miel natural de abeja puede conservarse comestible durante siglos si se almacena bien sellada.",
+      "opciones": [
+        "Verdadero",
+        "Falso"
+      ],
+      "explicacion": "Su bajísimo contenido de agua, alta acidez y presencia de peróxido de hidrógeno impiden la proliferación de bacterias y hongos."
+    },
+    {
+      "id": "VF12",
+      "tipo": "verdadero_falso",
+      "pregunta": "Sídney es la capital de Australia.",
+      "opciones": [
+        "Falso",
+        "Verdadero"
+      ],
+      "explicacion": "Sídney es la ciudad más antigua y poblada del país, pero la sede del gobierno federal se encuentra en Canberra."
+    },
+    {
+      "id": "VF13",
+      "tipo": "verdadero_falso",
+      "pregunta": "Un siglo equivale a cien años.",
+      "opciones": [
+        "Verdadero",
+        "Falso"
+      ],
+      "explicacion": "Es una unidad cronológica estándar empleada en historiografía para dividir periodos de diez décadas."
+    },
+    {
+      "id": "VF14",
+      "tipo": "verdadero_falso",
+      "pregunta": "Los humanos adultos tienen más huesos en el cuerpo que los bebés recién nacidos.",
+      "opciones": [
+        "Falso",
+        "Verdadero"
+      ],
+      "explicacion": "Un bebé nace con alrededor de 270 a 300 huesos, muchos de los cuales se fusionan durante el crecimiento hasta quedar en 206 en la edad adulta."
+    },
+    {
+      "id": "VF15",
+      "tipo": "verdadero_falso",
+      "pregunta": "El monte Fuji es un volcán situado en Japón.",
+      "opciones": [
+        "Verdadero",
+        "Falso"
+      ],
+      "explicacion": "Con 3.776 metros de altitud en la isla de Honshu, es el pico más alto del archipiélago japonés y un símbolo cultural sagrado."
+    },
+    {
+      "id": "VF16",
+      "tipo": "verdadero_falso",
+      "pregunta": "Los peces duermen cerrando sus párpados.",
+      "opciones": [
+        "Falso",
+        "Verdadero"
+      ],
+      "explicacion": "La mayoría de los peces óseos carecen de párpados móviles, por lo que descansan reduciendo su metabolismo con los ojos abiertos."
+    },
+    {
+      "id": "VF17",
+      "tipo": "verdadero_falso",
+      "pregunta": "La Revolución Industrial comenzó en Gran Bretaña en el siglo XVIII.",
+      "opciones": [
+        "Verdadero",
+        "Falso"
+      ],
+      "explicacion": "Impulsada por la máquina de vapor, la industria textil y abundantes reservas de carbón, transformó radicalmente la economía mundial."
+    },
+    {
+      "id": "VF18",
+      "tipo": "verdadero_falso",
+      "pregunta": "El planeta Saturno es el único planeta del sistema solar que posee un sistema de anillos.",
+      "opciones": [
+        "Falso",
+        "Verdadero"
+      ],
+      "explicacion": "Júpiter, Urano y Neptuno también poseen sistemas de anillos, aunque mucho más tenues y oscuros que los de Saturno."
+    },
+    {
+      "id": "VF19",
+      "tipo": "verdadero_falso",
+      "pregunta": "El océano Atlántico separa América de Europa y África.",
+      "opciones": [
+        "Verdadero",
+        "Falso"
+      ],
+      "explicacion": "Es la segunda mayor masa oceánica del planeta y constituye la principal ruta marítima histórica entre el Viejo y el Nuevo Mundo."
+    },
+    {
+      "id": "VF20",
+      "tipo": "verdadero_falso",
+      "pregunta": "Las huellas dactilares de dos gemelos idénticos son exactamente iguales.",
+      "opciones": [
+        "Falso",
+        "Verdadero"
+      ],
+      "explicacion": "Aunque comparten el mismo ADN, las crestas dérmicas se moldean por microfactores dentro del útero, haciéndolas únicas en cada individuo."
+    },
+    {
+      "id": "VF21",
+      "tipo": "verdadero_falso",
+      "pregunta": "El acero es una aleación compuesta principalmente de hierro y carbono.",
+      "opciones": [
+        "Verdadero",
+        "Falso"
+      ],
+      "explicacion": "La adición de un pequeño porcentaje de carbono (generalmente menor al 2%) aporta al hierro una gran resistencia mecánica y elasticidad."
+    },
+    {
+      "id": "VF22",
+      "tipo": "verdadero_falso",
+      "pregunta": "La ciudad de Venecia está construida sobre un archipiélago de islas en una laguna.",
+      "opciones": [
+        "Verdadero",
+        "Falso"
+      ],
+      "explicacion": "Más de un centenar de pequeñas islas unidas por cientos de puentes conforman su centro histórico en el mar Adriático."
+    },
+    {
+      "id": "VF23",
+      "tipo": "verdadero_falso",
+      "pregunta": "El sonido puede propagarse libremente a través del vacío del espacio exterior.",
+      "opciones": [
+        "Falso",
+        "Verdadero"
+      ],
+      "explicacion": "Las ondas sonoras son vibraciones mecánicas que necesitan un medio material (sólido, líquido o gas) para desplazarse."
+    },
+    {
+      "id": "VF24",
+      "tipo": "verdadero_falso",
+      "pregunta": "La Organización de las Naciones Unidas (ONU) fue fundada en 1945.",
+      "opciones": [
+        "Verdadero",
+        "Falso"
+      ],
+      "explicacion": "Se creó tras el fin de la Segunda Guerra Mundial mediante la firma de la Carta de las Naciones Unidas en San Francisco."
+    },
+    {
+      "id": "VF25",
+      "tipo": "verdadero_falso",
+      "pregunta": "Los cacahuetes crecen en las ramas de árboles altos similares a los nogales.",
+      "opciones": [
+        "Falso",
+        "Verdadero"
+      ],
+      "explicacion": "Son leguminosas cuyas vainas se desarrollan bajo tierra después de que la flor polinizada se entierra en el suelo."
+    },
+    {
+      "id": "VF26",
+      "tipo": "verdadero_falso",
+      "pregunta": "El continente africano es atravesado tanto por el ecuador como por los trópicos de Cáncer y Capricornio.",
+      "opciones": [
+        "Verdadero",
+        "Falso"
+      ],
+      "explicacion": "Es el único continente que abarca simultáneamente latitudes templadas del hemisferio norte, toda la franja intertropical y latitudes templadas del sur."
+    },
+    {
+      "id": "VF27",
+      "tipo": "verdadero_falso",
+      "pregunta": "La sal común de mesa está compuesta químicamente por cloruro de sodio.",
+      "opciones": [
+        "Verdadero",
+        "Falso"
+      ],
+      "explicacion": "Su fórmula química es NaCl, un compuesto iónico formado por proporciones iguales de átomos de sodio y cloro."
+    },
+    {
+      "id": "VF28",
+      "tipo": "verdadero_falso",
+      "pregunta": "El café es originario de América del Sur.",
+      "opciones": [
+        "Falso",
+        "Verdadero"
+      ],
+      "explicacion": "El cafeto es nativo de Etiopía, en África oriental, desde donde se extendió al mundo árabe y posteriormente a América."
+    },
+    {
+      "id": "VF29",
+      "tipo": "verdadero_falso",
+      "pregunta": "Un triángulo equilátero tiene sus tres lados y sus tres ángulos interiores iguales.",
+      "opciones": [
+        "Verdadero",
+        "Falso"
+      ],
+      "explicacion": "En geometría euclidiana, cada uno de sus ángulos internos mide exactamente 60 grados."
+    },
+    {
+      "id": "VF30",
+      "tipo": "verdadero_falso",
+      "pregunta": "Las jirafas tienen muchas más vértebras en el cuello que los seres humanos.",
+      "opciones": [
+        "Falso",
+        "Verdadero"
+      ],
+      "explicacion": "Al igual que casi todos los mamíferos, tanto las jirafas como los humanos poseen exactamente siete vértebras cervicales, aunque las de la jirafa son enormes."
+    },
+    {
+      "id": "VF31",
+      "tipo": "verdadero_falso",
+      "pregunta": "El mar Muerto es en realidad un lago salado sin salida al océano.",
+      "opciones": [
+        "Verdadero",
+        "Falso"
+      ],
+      "explicacion": "Ubicado entre Jordania e Israel, su altísima salinidad (cercana al 34%) permite que las personas floten sin esfuerzo."
+    },
+    {
+      "id": "VF32",
+      "tipo": "verdadero_falso",
+      "pregunta": "El papel fue inventado en la antigua China.",
+      "opciones": [
+        "Verdadero",
+        "Falso"
+      ],
+      "explicacion": "Se atribuye tradicionalmente al oficial imperial Cai Lun alrededor del año 105 d. C. utilizando fibras vegetales y corteza de morera."
+    },
+    {
+      "id": "VF33",
+      "tipo": "verdadero_falso",
+      "pregunta": "La estrella Polar es la estrella más brillante de todo el cielo nocturno.",
+      "opciones": [
+        "Falso",
+        "Verdadero"
+      ],
+      "explicacion": "La estrella más brillante visible desde la Tierra es Sirio; la importancia de Polaris radica en que señala casi exactamente el polo norte celeste."
+    },
+    {
+      "id": "VF34",
+      "tipo": "verdadero_falso",
+      "pregunta": "Los glóbulos rojos son las células de la sangre encargadas de transportar oxígeno.",
+      "opciones": [
+        "Verdadero",
+        "Falso"
+      ],
+      "explicacion": "Contienen hemoglobina, una proteína rica en hierro que captura oxígeno en los pulmones y lo lleva hacia todos los tejidos."
+    },
+    {
+      "id": "VF35",
+      "tipo": "verdadero_falso",
+      "pregunta": "La ópera 'Carmen' fue compuesta por el músico francés Georges Bizet.",
+      "opciones": [
+        "Verdadero",
+        "Falso"
+      ],
+      "explicacion": "Se estrenó en París en 1875 ambientada en Sevilla y se convirtió en una de las óperas más representadas del repertorio mundial."
+    },
+    {
+      "id": "VF36",
+      "tipo": "verdadero_falso",
+      "pregunta": "Todos los desiertos de la Tierra están cubiertos por dunas de arena.",
+      "opciones": [
+        "Falso",
+        "Verdadero"
+      ],
+      "explicacion": "La mayoría de los desiertos son pedregosos o rocosos, e incluso existen desiertos polares cubiertos de hielo como la Antártida."
+    },
+    {
+      "id": "VF37",
+      "tipo": "verdadero_falso",
+      "pregunta": "El sistema Braille es un método de lectura y escritura táctil diseñado para personas ciegas.",
+      "opciones": [
+        "Verdadero",
+        "Falso"
+      ],
+      "explicacion": "Fue ideado en el siglo XIX por el pedagogo francés Louis Braille basándose en celdas de seis puntos en relieve."
+    },
+    {
+      "id": "VF38",
+      "tipo": "verdadero_falso",
+      "pregunta": "La temperatura corporal normal promedio de un ser humano sano ronda los 37 grados Celsius.",
+      "opciones": [
+        "Verdadero",
+        "Falso"
+      ],
+      "explicacion": "Suele oscilar entre 36,5 °C y 37,2 °C dependiendo de la hora del día, la actividad física y el lugar de medición."
+    },
+    {
+      "id": "VF39",
+      "tipo": "verdadero_falso",
+      "pregunta": "Los delfines son peces que respiran bajo el agua mediante branquias.",
+      "opciones": [
+        "Falso",
+        "Verdadero"
+      ],
+      "explicacion": "Son mamíferos marinos odontocetos que deben salir periódicamente a la superficie para respirar aire a través de su espiráculo."
+    },
+    {
+      "id": "VF40",
+      "tipo": "verdadero_falso",
+      "pregunta": "El Taj Mahal se encuentra en la ciudad india de Agra.",
+      "opciones": [
+        "Verdadero",
+        "Falso"
+      ],
+      "explicacion": "Este mausoleo de mármol blanco fue erigido en el siglo XVII por el emperador mogol Shah Jahan en memoria de su esposa Mumtaz Mahal."
+    },
+    {
+      "id": "VF41",
+      "tipo": "verdadero_falso",
+      "pregunta": "El punto de congelación del agua salada del mar es exactamente igual al del agua dulce (0 °C).",
+      "opciones": [
+        "Falso",
+        "Verdadero"
+      ],
+      "explicacion": "La presencia de sales disueltas reduce el punto de congelación, haciendo que el agua oceánica se congele cerca de los -1,8 °C."
+    },
+    {
+      "id": "VF42",
+      "tipo": "verdadero_falso",
+      "pregunta": "La Gran Barrera de Coral se localiza frente a la costa noreste de Australia.",
+      "opciones": [
+        "Verdadero",
+        "Falso"
+      ],
+      "explicacion": "Con más de 2.300 kilómetros de extensión en el mar del Coral, es el mayor sistema de arrecifes coralinos del planeta."
+    },
+    {
+      "id": "VF43",
+      "tipo": "verdadero_falso",
+      "pregunta": "Los números primos solo son divisibles de forma exacta por 1 y por sí mismos.",
+      "opciones": [
+        "Verdadero",
+        "Falso"
+      ],
+      "explicacion": "Son números naturales mayores que 1 con exactamente dos divisores positivos distintos, comenzando por 2, 3, 5, 7 y 11."
+    },
+    {
+      "id": "VF44",
+      "tipo": "verdadero_falso",
+      "pregunta": "El número 1 es considerado matemáticamente un número primo.",
+      "opciones": [
+        "Falso",
+        "Verdadero"
+      ],
+      "explicacion": "Por definición moderna, un número primo debe tener exactamente dos divisores positivos distintos, mientras que el 1 solo tiene uno."
+    },
+    {
+      "id": "VF45",
+      "tipo": "verdadero_falso",
+      "pregunta": "La ciudad de Estambul se extiende sobre dos continentes: Europa y Asia.",
+      "opciones": [
+        "Verdadero",
+        "Falso"
+      ],
+      "explicacion": "Está dividida geográficamente por el estrecho del Bósforo, que conecta el mar Negro con el mar de Mármara."
+    },
+    {
+      "id": "VF46",
+      "tipo": "verdadero_falso",
+      "pregunta": "Los insectos poseen columna vertebral interna.",
+      "opciones": [
+        "Falso",
+        "Verdadero"
+      ],
+      "explicacion": "Son animales invertebrados artrópodos cuyo cuerpo está protegido y sostenido por un exoesqueleto externo de quitina."
+    },
+    {
+      "id": "VF47",
+      "tipo": "verdadero_falso",
+      "pregunta": "El río Támesis atraviesa la ciudad de Londres.",
+      "opciones": [
+        "Verdadero",
+        "Falso"
+      ],
+      "explicacion": "Desemboca en el mar del Norte tras cruzar el sur de Inglaterra y haber sido eje comercial histórico de la capital británica."
+    },
+    {
+      "id": "VF48",
+      "tipo": "verdadero_falso",
+      "pregunta": "La velocidad del sonido en el aire es mayor que la velocidad de la luz.",
+      "opciones": [
+        "Falso",
+        "Verdadero"
+      ],
+      "explicacion": "La luz viaja casi un millón de veces más rápido que el sonido, razón por la cual vemos el relámpago antes de escuchar el trueno."
+    },
+    {
+      "id": "VF49",
+      "tipo": "verdadero_falso",
+      "pregunta": "El ajedrez se juega sobre un tablero cuadriculado de 64 casillas.",
+      "opciones": [
+        "Verdadero",
+        "Falso"
+      ],
+      "explicacion": "Está dispuesto en una cuadrícula de 8 filas por 8 columnas con colores claros y oscuros alternados."
+    },
+    {
+      "id": "VF50",
+      "tipo": "verdadero_falso",
+      "pregunta": "La Antártida pertenece políticamente a un único país soberano.",
+      "opciones": [
+        "Falso",
+        "Verdadero"
+      ],
+      "explicacion": "Está regulada por el Tratado Antártico de 1959, que la consagra como reserva natural dedicada exclusivamente a la paz y la ciencia."
+    }
+  ]
+}
