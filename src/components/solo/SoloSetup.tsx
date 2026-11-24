@@ -49,10 +49,18 @@ export const SoloSetup: React.FC<Props> = ({
     !initialConfig || initialConfig.subjectIds.length === 0
   );
 
-  const availableQuestions = (allCategories
+  const activeCats = allCategories
     ? categories
-    : categories.filter((c) => config.subjectIds.includes(c.id))
-  ).reduce((sum, c) => sum + (c.question_count || 0), 0);
+    : categories.filter((c) => config.subjectIds.includes(c.id));
+
+  const diffCounts = {
+    mixta: activeCats.reduce((sum, c) => sum + (c.question_count || 0), 0),
+    facil: activeCats.reduce((sum, c) => sum + (c.facil_count || 0), 0),
+    media: activeCats.reduce((sum, c) => sum + (c.media_count ?? c.question_count ?? 0), 0),
+    dificil: activeCats.reduce((sum, c) => sum + (c.dificil_count || 0), 0)
+  };
+
+  const availableQuestions = diffCounts[config.difficulty] ?? diffCounts.mixta;
 
   const requestedTotal = config.totalRounds * config.questionsPerRound;
 
@@ -260,16 +268,25 @@ export const SoloSetup: React.FC<Props> = ({
                     ["media", "Media"],
                     ["dificil", "Difícil"]
                   ] as Array<[DifficultyFilter, string]>
-                ).map(([val, label]) => (
-                  <button
-                    key={val}
-                    type="button"
-                    className={`choice-pill ${config.difficulty === val ? "active" : ""}`}
-                    onClick={() => setConfig((p) => ({ ...p, difficulty: val }))}
-                  >
-                    {label}
-                  </button>
-                ))}
+                ).map(([val, label]) => {
+                  const cnt = diffCounts[val];
+                  return (
+                    <button
+                      key={val}
+                      type="button"
+                      className={`choice-pill ${config.difficulty === val ? "active" : ""}`}
+                      disabled={val !== "mixta" && cnt === 0}
+                      title={
+                        val !== "mixta" && cnt === 0
+                          ? "Aún no hay preguntas etiquetadas con esta dificultad en las categorías elegidas."
+                          : `${cnt} preguntas disponibles`
+                      }
+                      onClick={() => setConfig((p) => ({ ...p, difficulty: val }))}
+                    >
+                      {label} ({cnt})
+                    </button>
+                  );
+                })}
               </div>
             </div>
           </div>

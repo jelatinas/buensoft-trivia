@@ -21,6 +21,18 @@ export const MpHub: React.FC<Props> = ({ student, categories, onEnterRoom, onBac
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const activeCats =
+    subjectIds.length === 0
+      ? categories
+      : categories.filter((c) => subjectIds.includes(c.id));
+
+  const diffCounts = {
+    mixta: activeCats.reduce((sum, c) => sum + (c.question_count || 0), 0),
+    facil: activeCats.reduce((sum, c) => sum + (c.facil_count || 0), 0),
+    media: activeCats.reduce((sum, c) => sum + (c.media_count ?? c.question_count ?? 0), 0),
+    dificil: activeCats.reduce((sum, c) => sum + (c.dificil_count || 0), 0)
+  };
+
   function toggleCategory(id: string) {
     setSubjectIds((prev) =>
       prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
@@ -167,16 +179,25 @@ export const MpHub: React.FC<Props> = ({ student, categories, onEnterRoom, onBac
                     ["media", "Media"],
                     ["dificil", "Difícil"]
                   ] as Array<[DifficultyFilter, string]>
-                ).map(([val, label]) => (
-                  <button
-                    key={val}
-                    type="button"
-                    className={`choice-pill ${difficulty === val ? "active" : ""}`}
-                    onClick={() => setDifficulty(val)}
-                  >
-                    {label}
-                  </button>
-                ))}
+                ).map(([val, label]) => {
+                  const cnt = diffCounts[val];
+                  return (
+                    <button
+                      key={val}
+                      type="button"
+                      className={`choice-pill ${difficulty === val ? "active" : ""}`}
+                      disabled={val !== "mixta" && cnt === 0}
+                      title={
+                        val !== "mixta" && cnt === 0
+                          ? "Aún no hay preguntas etiquetadas con esta dificultad."
+                          : `${cnt} preguntas disponibles`
+                      }
+                      onClick={() => setDifficulty(val)}
+                    >
+                      {label} ({cnt})
+                    </button>
+                  );
+                })}
               </div>
             </div>
           </div>
