@@ -76,6 +76,7 @@ export const SoloGame: React.FC<Props> = ({
   const isPractice = state.mode === "practica";
   const baseLimit = isPractice ? 0 : state.time_limit_sec + (q?.extra_time_sec ?? 0);
   const [timeLeft, setTimeLeft] = useState<number>(baseLimit);
+  const [timerOrdinal, setTimerOrdinal] = useState<number>(q?.ordinal ?? 0);
   const startedAtRef = useRef<number>(Date.now());
   const timeoutFiredRef = useRef<boolean>(false);
   const plannedTurnsRef = useRef<Map<string, PlannedBotAnswer>>(new Map());
@@ -94,6 +95,7 @@ export const SoloGame: React.FC<Props> = ({
     setSkipFeedback(null);
     setError(null);
     setRankDeltas({});
+    setTimerOrdinal(q.ordinal);
     setTimeLeft(isPractice ? 0 : state.time_limit_sec + q.extra_time_sec);
 
     if (botsRef.current.length === 0) return;
@@ -199,8 +201,9 @@ export const SoloGame: React.FC<Props> = ({
   // Cuenta regresiva con sonido opcional
   useEffect(() => {
     if (!q || isPractice || feedback || skipFeedback) return;
+    if (timerOrdinal !== q.ordinal) return;
     if (timeLeft <= 0) {
-      if (!timeoutFiredRef.current) {
+      if (!timeoutFiredRef.current && Date.now() - startedAtRef.current >= 1500) {
         timeoutFiredRef.current = true;
         void submitAnswer(null);
       }
@@ -214,10 +217,12 @@ export const SoloGame: React.FC<Props> = ({
     }, 1000);
     return () => window.clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [timeLeft, q?.ordinal, isPractice, feedback, skipFeedback]);
+  }, [timeLeft, timerOrdinal, q?.ordinal, isPractice, feedback, skipFeedback]);
 
   async function submitAnswer(option: string | null) {
     if (!q || busy || feedback || skipFeedback) return;
+    // Evitar toques fantasma en celular al cambiar de pregunta (<400ms)
+    if (option !== null && Date.now() - startedAtRef.current < 400) return;
     setBusy(true);
     setSelected(option);
     setError(null);

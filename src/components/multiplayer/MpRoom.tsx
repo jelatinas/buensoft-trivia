@@ -50,6 +50,7 @@ export const MpRoom: React.FC<Props> = ({ student, initialRoom, onExit }) => {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [timeLeft, setTimeLeft] = useState<number>(initialRoom.time_limit_sec);
+  const [timerOrdinal, setTimerOrdinal] = useState<number>(initialRoom.current_ordinal);
   const [roomTimeLeft, setRoomTimeLeft] = useState<number>(initialRoom.time_limit_sec);
   const [roomTotalTime, setRoomTotalTime] = useState<number>(initialRoom.time_limit_sec);
   const [extraTimeNotice, setExtraTimeNotice] = useState<string | null>(null);
@@ -95,6 +96,7 @@ export const MpRoom: React.FC<Props> = ({ student, initialRoom, onExit }) => {
     startedAtRef.current = Date.now();
     timeoutSentRef.current = false;
     const extra = myAns?.extra_time_sec ?? 0;
+    setTimerOrdinal(q.ordinal);
     setTimeLeft(room.time_limit_sec + extra);
     setRoomTimeLeft(room.time_limit_sec);
     setRoomTotalTime(room.time_limit_sec);
@@ -133,8 +135,9 @@ export const MpRoom: React.FC<Props> = ({ student, initialRoom, onExit }) => {
 
   useEffect(() => {
     if (room.status !== "playing" || !q || myAns?.answered) return;
+    if (timerOrdinal !== q.ordinal) return;
     if (timeLeft <= 0) {
-      if (!timeoutSentRef.current) {
+      if (!timeoutSentRef.current && Date.now() - startedAtRef.current >= 1500) {
         timeoutSentRef.current = true;
         void handleAnswer(null);
       }
@@ -146,7 +149,7 @@ export const MpRoom: React.FC<Props> = ({ student, initialRoom, onExit }) => {
     const timer = window.setTimeout(() => setTimeLeft((t) => Math.max(0, t - 1)), 1000);
     return () => window.clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [timeLeft, room.status, q?.ordinal, myAns?.answered]);
+  }, [timeLeft, timerOrdinal, room.status, q?.ordinal, myAns?.answered]);
 
   const inviteUrl = `${window.location.origin}/?sala=${room.code}`;
 
@@ -203,6 +206,8 @@ export const MpRoom: React.FC<Props> = ({ student, initialRoom, onExit }) => {
 
   async function handleAnswer(option: string | null) {
     if (busy || myAns?.answered || room.status !== "playing") return;
+    // Evitar toques fantasma en celular al cambiar de pregunta (<400ms)
+    if (option !== null && Date.now() - startedAtRef.current < 400) return;
     setBusy(true);
     setError(null);
     try {
