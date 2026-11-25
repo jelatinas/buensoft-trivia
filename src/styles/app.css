@@ -2123,3 +2123,114 @@ body {
   padding-top: 0.65rem;
   border-top: 1px solid var(--border);
 }
+
+/* ============================================================================
+   TEMAS DE COLOR (Oscuro, Claro, Al azar: neon / sunset / forest / sky)
+   ============================================================================ */
+.theme-picker-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.hero-badges {
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+html[data-theme="light"] {
+  --bg: #f3f6fc;
+  --bg-elev: #e8eef9;
+  --bg-card: #ffffff;
+  --border: rgba(15, 23, 42, 0.14);
+  --text: #0f172a;
+  --muted: #475569;
+}
+
+html[data-theme="light"] body {
+  background:
+    radial-gradient(circle at 15% 10%, rgba(99, 102, 241, 0.14), transparent 42%),
+    radial-gradient(circle at 85% 15%, rgba(14, 165, 233, 0.14), transparent 42%),
+    linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+  color: #0f172a;
+}
+
+html[data-theme="light"] .topbar {
+  background: rgba(255, 255, 255, 0.88);
+  color: #0f172a;
+}
+
+html[data-theme="light"] .stage-card {
+  background: #ffffff;
+  border-color: rgba(99, 102, 241, 0.35);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.1);
+}
+
+html[data-theme="light"] .stage-question-box {
+  background: linear-gradient(180deg, #eef2ff 0%, #e0f2fe 100%);
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+html[data-theme="light"] .stage-question-text,
+html[data-theme="light"] .arcade-option-text,
+html[data-theme="light"] .brand-badge h1 {
+  color: #0f172a;
+  text-shadow: none;
+}
+
+html[data-theme="light"] .arcade-option {
+  background: #f8fafc;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+}
+
+html[data-theme="light"] .mode-desc,
+html[data-theme="light"] .tag-pill,
+html[data-theme="light"] .meta-chip {
+  color: #334155;
+}
+
+html[data-theme="light"] .invite-box {
+  background: #f1f5f9;
+}
+
+html[data-theme="light"] .invite-url {
+  background: #e2e8f0;
+  color: #0369a1;
+}
+
+html[data-theme="light"] .podium-pedestal {
+  background: linear-gradient(180deg, #e2e8f0 0%, #cbd5e1 100%);
+}
+
+html[data-theme="light"] .podium-number {
+  color: #0f172a;
+}
+
+html[data-theme="neon"] body {
+  background:
+    radial-gradient(circle at 18% 12%, rgba(236, 72, 153, 0.34), transparent 42%),
+    radial-gradient(circle at 82% 16%, rgba(0, 210, 255, 0.28), transparent 44%),
+    linear-gradient(180deg, #1a0b4a 0%, #09041c 100%);
+}
+
+html[data-theme="sunset"] body {
+  background:
+    radial-gradient(circle at 18% 12%, rgba(251, 146, 60, 0.32), transparent 44%),
+    radial-gradient(circle at 82% 18%, rgba(244, 63, 94, 0.3), transparent 45%),
+    linear-gradient(180deg, #2b0a18 0%, #12040a 100%);
+}
+
+html[data-theme="forest"] body {
+  background:
+    radial-gradient(circle at 18% 12%, rgba(16, 185, 129, 0.3), transparent 44%),
+    radial-gradient(circle at 82% 18%, rgba(251, 191, 36, 0.2), transparent 44%),
+    linear-gradient(180deg, #06241c 0%, #03110d 100%);
+}
+
+html[data-theme="sky"] body {
+  background:
+    radial-gradient(circle at 18% 12%, rgba(56, 189, 248, 0.32), transparent 44%),
+    radial-gradient(circle at 82% 18%, rgba(99, 102, 241, 0.28), transparent 44%),
+    linear-gradient(180deg, #072038 0%, #030e1c 100%);
+}

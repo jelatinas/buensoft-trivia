@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import type { Category, Student } from "../types/trivia";
 import { SoundToggle } from "./shared/SoundToggle";
+import { ThemePicker } from "./shared/ThemePicker";
 
 interface Props {
   student: Student;
@@ -92,6 +93,7 @@ export const MainMenu: React.FC<Props> = ({
             </p>
           </div>
           <div className="hero-badges">
+            <ThemePicker />
             <div className="mini-stat">
               <BookOpen size={18} />
               <span>{categories.length} materias</span>
