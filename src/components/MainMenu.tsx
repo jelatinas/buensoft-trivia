@@ -41,7 +41,7 @@ export const MainMenu: React.FC<Props> = ({
     <div className="page-shell">
       <header className="topbar">
         <div className="brand-inline">
-          <Brain size={28} className="accent-icon" />
+          <img src="/icon.png" alt="Buensoft Trivia" style={{ width: 38, height: 38, borderRadius: 10 }} />
           <div>
             <strong>Buensoft Trivia</strong>
             <span className="tag-pill">Evalua Banco Compartido</span>

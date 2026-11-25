@@ -44,7 +44,7 @@ export const LoginView: React.FC<Props> = ({ pendingRoomCode, onLogin }) => {
     <div className="login-shell">
       <div className="login-card">
         <div className="brand-badge">
-          <Brain size={34} />
+          <img src="/icon.png" alt="Buensoft Trivia" style={{ width: 52, height: 52, borderRadius: 12 }} />
           <div>
             <h1>Buensoft Trivia</h1>
             <p className="muted">Banco de preguntas compartido con Buensoft Evalua</p>
