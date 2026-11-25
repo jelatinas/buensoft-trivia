@@ -50,6 +50,7 @@ export const MpRoom: React.FC<Props> = ({ student, initialRoom, onExit }) => {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [timeLeft, setTimeLeft] = useState<number>(initialRoom.time_limit_sec);
+  const [roomTimeLeft, setRoomTimeLeft] = useState<number>(initialRoom.time_limit_sec);
   const startedAtRef = useRef<number>(Date.now());
   const timeoutSentRef = useRef<boolean>(false);
 
@@ -86,7 +87,16 @@ export const MpRoom: React.FC<Props> = ({ student, initialRoom, onExit }) => {
     timeoutSentRef.current = false;
     const extra = myAns?.extra_time_sec ?? 0;
     setTimeLeft(room.time_limit_sec + extra);
+    setRoomTimeLeft(room.time_limit_sec);
   }, [room.status, q?.ordinal]);
+
+  // Temporizador global de la pregunta (para habilitar el avance del anfitrión solo al vencer o contestar todos)
+  useEffect(() => {
+    if (room.status !== "playing" || !q) return;
+    if (roomTimeLeft <= 0) return;
+    const timer = window.setTimeout(() => setRoomTimeLeft((t) => Math.max(0, t - 1)), 1000);
+    return () => window.clearTimeout(timer);
+  }, [roomTimeLeft, room.status, q?.ordinal]);
 
   useEffect(() => {
     if (room.status !== "playing" || !q || myAns?.answered) return;
@@ -446,23 +456,31 @@ export const MpRoom: React.FC<Props> = ({ student, initialRoom, onExit }) => {
                 </div>
               )}
 
-              {isHost && (
-                <div className="feedback-actions">
-                  <button
-                    type="button"
-                    className="btn btn-gold btn-lg"
-                    disabled={busy}
-                    onClick={handleAdvance}
-                  >
-                    {room.status === "playing"
-                      ? "Cerrar pregunta y revelar"
-                      : q.ordinal >= room.total_questions
-                      ? "Finalizar partida y ver podio"
-                      : "Siguiente pregunta"}
-                    <ArrowRight size={18} />
-                  </button>
-                </div>
-              )}
+              {isHost && (() => {
+                const allAnswered =
+                  room.players.length > 0 && room.answered_players_count >= room.players.length;
+                const canAdvance = room.status === "reveal" || allAnswered || roomTimeLeft <= 0;
+                const label = !canAdvance
+                  ? `Esperando respuestas (${room.answered_players_count}/${room.players.length}) · ${roomTimeLeft}s`
+                  : room.status === "playing"
+                  ? "Cerrar pregunta y revelar"
+                  : q.ordinal >= room.total_questions
+                  ? "Finalizar partida y ver podio"
+                  : "Siguiente pregunta";
+                return (
+                  <div className="feedback-actions">
+                    <button
+                      type="button"
+                      className="btn btn-gold btn-lg"
+                      disabled={busy || !canAdvance}
+                      onClick={handleAdvance}
+                    >
+                      {label}
+                      {canAdvance && <ArrowRight size={18} />}
+                    </button>
+                  </div>
+                );
+              })()}
             </section>
 
             <aside className="card leaderboard-card">
