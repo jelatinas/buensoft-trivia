@@ -11,6 +11,7 @@ import { StatsView } from "./components/stats/StatsView";
 import { DEFAULT_BOT_IDS, type BotMatchState } from "./lib/aiOpponents";
 import {
   checkTriviaSchemaInstalled,
+  joinMpRoom,
   listCategories,
   redeemWorkspaceCode,
   startSoloGame
@@ -35,12 +36,20 @@ type Screen =
   | "admin";
 
 const STORAGE_KEY = "buensoft-trivia-student";
+const PENDING_ROOM_KEY = "buensoft-trivia-pending-room";
 
 export const App: React.FC = () => {
   const [screen, setScreen] = useState<Screen>("login");
   const [student, setStudent] = useState<Student | null>(null);
   const [categories, setCategories] = useState<Category[]>([]);
   const [schemaReady, setSchemaReady] = useState<boolean>(true);
+  const [pendingRoomCode, setPendingRoomCode] = useState<string | null>(() => {
+    try {
+      return sessionStorage.getItem(PENDING_ROOM_KEY);
+    } catch {
+      return null;
+    }
+  });
 
   const [lastSoloConfig, setLastSoloConfig] = useState<SoloConfig | undefined>(undefined);
   const [soloState, setSoloState] = useState<SoloGameState | null>(null);
@@ -60,11 +69,52 @@ export const App: React.FC = () => {
     setCategories(cats);
   }
 
+  async function tryAutoJoinPendingRoom(s: Student, explicitCode?: string | null) {
+    const codeToJoin = explicitCode ?? pendingRoomCode ?? (() => {
+      try {
+        return sessionStorage.getItem(PENDING_ROOM_KEY);
+      } catch {
+        return null;
+      }
+    })();
+    if (!codeToJoin) return false;
+    try {
+      sessionStorage.removeItem(PENDING_ROOM_KEY);
+    } catch {
+      // ignorar
+    }
+    setPendingRoomCode(null);
+    try {
+      const room = await joinMpRoom(codeToJoin, s.id);
+      setMpRoom(room);
+      setScreen("mp_room");
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
   useEffect(() => {
     void refreshCatalog();
 
-    // Soporte de entrada automática desde Buensoft Workspace (?entrada=...)
+    // Detectar enlace directo de invitación (?sala=XXXXXX)
     const params = new URLSearchParams(window.location.search);
+    const salaParam = params.get("sala") || params.get("code") || params.get("room");
+    let detectedRoom: string | null = null;
+    if (salaParam && /^[A-Za-z0-9]{4,10}$/.test(salaParam.trim())) {
+      detectedRoom = salaParam.trim().toUpperCase();
+      setPendingRoomCode(detectedRoom);
+      try {
+        sessionStorage.setItem(PENDING_ROOM_KEY, detectedRoom);
+      } catch {
+        // ignorar
+      }
+      params.delete("sala");
+      params.delete("code");
+      params.delete("room");
+    }
+
+    // Soporte de entrada automática desde Buensoft Workspace (?entrada=...)
     const code = params.get("entrada");
     if (code && /^[A-Za-z0-9_-]{20,}$/.test(code)) {
       params.delete("entrada");
@@ -75,9 +125,18 @@ export const App: React.FC = () => {
         window.location.pathname + (q ? `?${q}` : "") + window.location.hash
       );
       redeemWorkspaceCode(code)
-        .then((s) => handleLogin(s))
+        .then((s) => handleLogin(s, detectedRoom))
         .catch(() => {});
       return;
+    }
+
+    if (detectedRoom) {
+      const q = params.toString();
+      window.history.replaceState(
+        null,
+        "",
+        window.location.pathname + (q ? `?${q}` : "") + window.location.hash
+      );
     }
 
     try {
@@ -87,14 +146,18 @@ export const App: React.FC = () => {
         if (parsed?.id && parsed?.name) {
           setStudent(parsed);
           setScreen("menu");
+          if (detectedRoom) {
+            void tryAutoJoinPendingRoom(parsed, detectedRoom);
+          }
         }
       }
     } catch {
       // ignorar
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  function handleLogin(s: Student) {
+  function handleLogin(s: Student, explicitRoom?: string | null) {
     setStudent(s);
     try {
       sessionStorage.setItem(STORAGE_KEY, JSON.stringify(s));
@@ -103,6 +166,7 @@ export const App: React.FC = () => {
     }
     setScreen("menu");
     void refreshCatalog();
+    void tryAutoJoinPendingRoom(s, explicitRoom);
   }
 
   function handleLogout() {
@@ -138,7 +202,7 @@ export const App: React.FC = () => {
   }
 
   if (!student || screen === "login") {
-    return <LoginView onLogin={handleLogin} />;
+    return <LoginView pendingRoomCode={pendingRoomCode} onLogin={handleLogin} />;
   }
 
   if (screen === "solo_setup") {

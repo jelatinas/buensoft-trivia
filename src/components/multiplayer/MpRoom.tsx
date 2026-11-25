@@ -8,8 +8,10 @@ import {
   Crown,
   Flame,
   Home,
+  Link2,
   LogOut,
   Play,
+  Share2,
   SkipForward,
   Split,
   Trophy,
@@ -44,7 +46,7 @@ interface Props {
 
 export const MpRoom: React.FC<Props> = ({ student, initialRoom, onExit }) => {
   const [room, setRoom] = useState<MpRoomState>(initialRoom);
-  const [copied, setCopied] = useState(false);
+  const [copied, setCopied] = useState<"code" | "link" | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [timeLeft, setTimeLeft] = useState<number>(initialRoom.time_limit_sec);
@@ -103,10 +105,32 @@ export const MpRoom: React.FC<Props> = ({ student, initialRoom, onExit }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timeLeft, room.status, q?.ordinal, myAns?.answered]);
 
+  const inviteUrl = `${window.location.origin}/?sala=${room.code}`;
+
   function copyCode() {
     navigator.clipboard?.writeText(room.code).catch(() => {});
-    setCopied(true);
-    window.setTimeout(() => setCopied(false), 1800);
+    setCopied("code");
+    window.setTimeout(() => setCopied(null), 1800);
+  }
+
+  function copyLink() {
+    navigator.clipboard?.writeText(inviteUrl).catch(() => {});
+    setCopied("link");
+    window.setTimeout(() => setCopied(null), 1800);
+  }
+
+  async function shareInvite() {
+    const text = `¡Únete a mi partida de Buensoft Trivia! Código: ${room.code}`;
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: "Buensoft Trivia", text, url: inviteUrl });
+        return;
+      } catch {
+        // usuario canceló o no soportado
+      }
+    }
+    const waUrl = `https://wa.me/?text=${encodeURIComponent(`${text}\n${inviteUrl}`)}`;
+    window.open(waUrl, "_blank", "noopener,noreferrer");
   }
 
   async function toggleReady() {
@@ -200,9 +224,13 @@ export const MpRoom: React.FC<Props> = ({ student, initialRoom, onExit }) => {
         </div>
         <div className="topbar-actions">
           <SoundToggle />
+          <button type="button" className="btn btn-ghost" onClick={copyLink}>
+            {copied === "link" ? <Check size={16} /> : <Link2 size={16} />}
+            {copied === "link" ? "Enlace copiado" : "Copiar enlace"}
+          </button>
           <button type="button" className="btn btn-ghost" onClick={copyCode}>
-            {copied ? <Check size={16} /> : <Copy size={16} />}
-            {copied ? "Copiado" : `Código: ${room.code}`}
+            {copied === "code" ? <Check size={16} /> : <Copy size={16} />}
+            {copied === "code" ? "Copiado" : `Código: ${room.code}`}
           </button>
           <button type="button" className="btn btn-ghost" onClick={onExit}>
             <LogOut size={16} /> Salir
@@ -217,12 +245,40 @@ export const MpRoom: React.FC<Props> = ({ student, initialRoom, onExit }) => {
           <div className="main-container narrow" style={{ padding: 0 }}>
             <section className="card stage-card">
               <span className="eyebrow">Sala de espera en vivo</span>
-              <h2>Código de invitación: <span className="gold-text">{room.code}</span></h2>
+              <h2>Invita a tus amigos</h2>
               <p className="muted">
                 {room.total_rounds} rondas · {room.questions_per_round} preguntas/ronda ·{" "}
                 {room.time_limit_sec}s por pregunta · Comodines{" "}
                 {room.lifelines_enabled ? "activados" : "desactivados"}
               </p>
+
+              <div className="invite-box">
+                <div className="invite-row">
+                  <div className="invite-info">
+                    <span className="muted" style={{ fontSize: "0.78rem" }}>Enlace directo (1 clic para entrar)</span>
+                    <code className="invite-url">{inviteUrl}</code>
+                  </div>
+                  <div className="pill-row">
+                    <button type="button" className="btn btn-secondary" onClick={copyLink}>
+                      {copied === "link" ? <Check size={16} /> : <Link2 size={16} />}
+                      {copied === "link" ? "Copiado" : "Copiar enlace"}
+                    </button>
+                    <button type="button" className="btn btn-gold" onClick={shareInvite}>
+                      <Share2 size={16} /> Compartir / WhatsApp
+                    </button>
+                  </div>
+                </div>
+                <div className="invite-code-line">
+                  <span className="muted">O diles el código:</span>
+                  <strong className="gold-text" style={{ letterSpacing: "0.18em", fontSize: "1.15rem" }}>
+                    {room.code}
+                  </strong>
+                  <button type="button" className="btn btn-ghost" onClick={copyCode}>
+                    {copied === "code" ? <Check size={15} /> : <Copy size={15} />}
+                    {copied === "code" ? "Copiado" : "Copiar código"}
+                  </button>
+                </div>
+              </div>
 
               <div className="player-list">
                 {room.players.map((p) => (

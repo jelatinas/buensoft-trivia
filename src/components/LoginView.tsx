@@ -4,10 +4,11 @@ import { enterStudent, listStudents } from "../services/triviaApi";
 import type { Student } from "../types/trivia";
 
 interface Props {
+  pendingRoomCode?: string | null;
   onLogin: (student: Student) => void;
 }
 
-export const LoginView: React.FC<Props> = ({ onLogin }) => {
+export const LoginView: React.FC<Props> = ({ pendingRoomCode, onLogin }) => {
   const [students, setStudents] = useState<Student[]>([]);
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(true);
@@ -49,6 +50,16 @@ export const LoginView: React.FC<Props> = ({ onLogin }) => {
             <p className="muted">Banco de preguntas compartido con Buensoft Evalua</p>
           </div>
         </div>
+
+        {pendingRoomCode && (
+          <div className="alert alert-success">
+            <Sparkles size={18} />
+            <span>
+              Te invitaron a la sala <strong>{pendingRoomCode}</strong>. Entra con tu cuenta o
+              perfil para unirte automáticamente.
+            </span>
+          </div>
+        )}
 
         <p className="login-lead">
           Entra con tu cuenta de Google desde <strong>Buensoft Workspace</strong> o elige un perfil

@@ -39,16 +39,24 @@ export const MpHub: React.FC<Props> = ({ student, categories, onEnterRoom, onBac
     );
   }
 
+  function extractRoomCode(raw: string): string {
+    const trimmed = raw.trim();
+    const match = trimmed.match(/[?&](?:sala|code|room)=([A-Za-z0-9]+)/i);
+    if (match) return match[1].toUpperCase();
+    return trimmed.toUpperCase();
+  }
+
   async function handleJoin(e: React.FormEvent) {
     e.preventDefault();
-    if (code.trim().length < 4) {
-      setError("Ingresa el código de 6 caracteres de la sala.");
+    const parsedCode = extractRoomCode(code);
+    if (parsedCode.length < 4) {
+      setError("Ingresa el código de 6 caracteres o pega el enlace de invitación.");
       return;
     }
     setBusy(true);
     setError(null);
     try {
-      const room = await joinMpRoom(code, student.id);
+      const room = await joinMpRoom(parsedCode, student.id);
       onEnterRoom(room);
     } catch (err) {
       setError(err instanceof Error ? err.message : "No se pudo unir a la sala.");
@@ -92,17 +100,16 @@ export const MpHub: React.FC<Props> = ({ student, categories, onEnterRoom, onBac
 
         <section className="card">
           <h3>
-            <KeyRound size={20} /> Unirse mediante código
+            <KeyRound size={20} /> Unirse por enlace o código
           </h3>
-          <p className="muted">Pide el código de 6 caracteres al anfitrión de la partida.</p>
+          <p className="muted">Pega el enlace de invitación o escribe el código de 6 caracteres.</p>
           <form onSubmit={handleJoin} className="inline-form">
             <input
               type="text"
               value={code}
-              onChange={(e) => setCode(e.target.value.toUpperCase())}
-              placeholder="Ej. A7K9PQ"
-              maxLength={8}
-              className="code-input"
+              onChange={(e) => setCode(e.target.value)}
+              placeholder="Ej. A7K9PQ o pega el enlace"
+              maxLength={140}
               disabled={busy}
             />
             <button type="submit" className="btn btn-secondary" disabled={busy}>
