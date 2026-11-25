@@ -431,7 +431,7 @@ export const SoloGame: React.FC<Props> = ({
             <article key={q.ordinal} className="stage-card stage-enter">
               <div className="stage-top-bar">
                 <span className="stage-q-badge">
-                  PREGUNTA {q.ordinal} · {q.subject_name}
+                  PREGUNTA {q.ordinal}/{state.total_questions} · {q.subject_name}
                 </span>
                 {!isPractice && (
                   <span className="stage-pts-badge">

@@ -404,7 +404,7 @@ export const MpRoom: React.FC<Props> = ({ student, initialRoom, onExit }) => {
             <section key={q.ordinal} className="stage-card stage-enter">
               <div className="stage-top-bar">
                 <span className="stage-q-badge">
-                  PREGUNTA {q.ordinal} · {q.subject_name}
+                  PREGUNTA {q.ordinal}/{room.total_questions} · {q.subject_name}
                 </span>
                 <span className="stage-pts-badge">
                   {q.base_points} pts × {q.multiplier}
