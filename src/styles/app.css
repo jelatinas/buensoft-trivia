@@ -346,6 +346,11 @@ textarea:focus {
   gap: 0.6rem;
 }
 
+.inline-form .btn {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
 .login-footer {
   display: flex;
   align-items: center;
