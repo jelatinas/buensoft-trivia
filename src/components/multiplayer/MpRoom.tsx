@@ -51,8 +51,17 @@ export const MpRoom: React.FC<Props> = ({ student, initialRoom, onExit }) => {
   const [error, setError] = useState<string | null>(null);
   const [timeLeft, setTimeLeft] = useState<number>(initialRoom.time_limit_sec);
   const [roomTimeLeft, setRoomTimeLeft] = useState<number>(initialRoom.time_limit_sec);
+  const [roomTotalTime, setRoomTotalTime] = useState<number>(initialRoom.time_limit_sec);
+  const [extraTimeNotice, setExtraTimeNotice] = useState<string | null>(null);
   const startedAtRef = useRef<number>(Date.now());
   const timeoutSentRef = useRef<boolean>(false);
+  const extraTimeUsedSetRef = useRef<Set<string>>(
+    new Set(
+      initialRoom.players
+        .filter((p) => p.lifelines_used?.extra_time)
+        .map((p) => p.student_id)
+    )
+  );
 
   const isHost = room.host_student_id === student.id;
   const me = room.players.find((p) => p.student_id === student.id);
@@ -88,7 +97,31 @@ export const MpRoom: React.FC<Props> = ({ student, initialRoom, onExit }) => {
     const extra = myAns?.extra_time_sec ?? 0;
     setTimeLeft(room.time_limit_sec + extra);
     setRoomTimeLeft(room.time_limit_sec);
+    setRoomTotalTime(room.time_limit_sec);
+    setExtraTimeNotice(null);
+    extraTimeUsedSetRef.current = new Set(
+      room.players.filter((p) => p.lifelines_used?.extra_time).map((p) => p.student_id)
+    );
   }, [room.status, q?.ordinal]);
+
+  // Detectar en tiempo real cuando algún participante usa el comodín +10s en esta pregunta
+  useEffect(() => {
+    if (room.status !== "playing" || !q) return;
+    const newlyUsed = room.players.filter(
+      (p) => p.lifelines_used?.extra_time && !extraTimeUsedSetRef.current.has(p.student_id)
+    );
+    if (newlyUsed.length > 0) {
+      newlyUsed.forEach((p) => extraTimeUsedSetRef.current.add(p.student_id));
+      const addedSec = newlyUsed.length * 10;
+      setRoomTimeLeft((t) => t + addedSec);
+      setRoomTotalTime((t) => t + addedSec);
+      const names = newlyUsed.map((p) => p.student_name).join(", ");
+      setExtraTimeNotice(
+        `⏱️ ¡${names} usó el comodín +10s! Espera ${addedSec}s adicionales para la siguiente pregunta.`
+      );
+      playLifeline();
+    }
+  }, [room.players, room.status, q?.ordinal]);
 
   // Temporizador global de la pregunta (para habilitar el avance del anfitrión solo al vencer o contestar todos)
   useEffect(() => {
@@ -216,10 +249,11 @@ export const MpRoom: React.FC<Props> = ({ student, initialRoom, onExit }) => {
     }
   }
 
-  const timerPct = Math.max(
-    0,
-    Math.round((timeLeft / Math.max(room.time_limit_sec + (myAns?.extra_time_sec ?? 0), 1)) * 100)
-  );
+  const displayTime = myAns?.answered ? roomTimeLeft : timeLeft;
+  const displayMax = myAns?.answered
+    ? Math.max(roomTotalTime, 1)
+    : Math.max(room.time_limit_sec + (myAns?.extra_time_sec ?? 0), 1);
+  const timerPct = Math.max(0, Math.min(100, Math.round((displayTime / displayMax) * 100)));
 
   return (
     <div className="page-shell show-stage-bg">
@@ -353,14 +387,20 @@ export const MpRoom: React.FC<Props> = ({ student, initialRoom, onExit }) => {
                 <div className="stage-timer">
                   <div className="timer-track neon">
                     <div
-                      className={`timer-fill ${timeLeft <= 4 ? "urgent" : ""}`}
+                      className={`timer-fill ${displayTime <= 4 ? "urgent" : ""}`}
                       style={{ width: `${timerPct}%` }}
                     />
                   </div>
-                  <span className={`timer-clock ${timeLeft <= 4 && !myAns?.answered ? "urgent" : ""}`}>
+                  <span className={`timer-clock ${displayTime <= 4 ? "urgent" : ""}`}>
                     <Clock size={16} />
-                    {myAns?.answered ? "✓" : `${timeLeft}s`}
+                    {`${displayTime}s`}
                   </span>
+                </div>
+              )}
+
+              {extraTimeNotice && room.status === "playing" && (
+                <div className="alert alert-warning" style={{ marginBottom: "0.9rem" }}>
+                  <strong>{extraTimeNotice}</strong>
                 </div>
               )}
 
