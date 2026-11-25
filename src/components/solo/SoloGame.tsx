@@ -84,6 +84,34 @@ export const SoloGame: React.FC<Props> = ({
   const botsRef = useRef<BotMatchState[]>(bots);
   botsRef.current = bots;
   const prevRankMapRef = useRef<Record<string, number>>({});
+  const stageRef = useRef<HTMLElement | null>(null);
+  const feedbackRef = useRef<HTMLDivElement | null>(null);
+
+  // Al cambiar de pregunta, subir suavemente para mostrar pregunta y opciones
+  useEffect(() => {
+    if (!q) return;
+    window.requestAnimationFrame(() => {
+      if (stageRef.current) {
+        stageRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    });
+  }, [q?.ordinal]);
+
+  // Al calificarse la respuesta, bajar suavemente al panel con explicación y botón Siguiente
+  useEffect(() => {
+    if (!feedback && !skipFeedback) return;
+    const id = window.setTimeout(() => {
+      const el = feedbackRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      if (rect.bottom > window.innerHeight - 12 || rect.top < 0) {
+        el.scrollIntoView({ behavior: "smooth", block: "end" });
+      }
+    }, 80);
+    return () => window.clearTimeout(id);
+  }, [feedback, skipFeedback]);
 
   // Reiniciar temporizador y planificar turnos de los rivales de la PC al cambiar de pregunta
   useEffect(() => {
@@ -428,7 +456,7 @@ export const SoloGame: React.FC<Props> = ({
 
         <div className="mp-play-layout">
           <div className="stack-lg">
-            <article key={q.ordinal} className="stage-card stage-enter">
+            <article key={q.ordinal} ref={stageRef} className="stage-card stage-enter">
               <div className="stage-top-bar">
                 <span className="stage-q-badge">
                   PREGUNTA {q.ordinal}/{state.total_questions} · {q.subject_name}
@@ -550,6 +578,7 @@ export const SoloGame: React.FC<Props> = ({
 
               {(feedback || skipFeedback) && (
                 <div
+                  ref={feedbackRef}
                   className={`feedback-panel ${
                     skipFeedback
                       ? "neutral"

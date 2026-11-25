@@ -59,6 +59,8 @@ export const MpRoom: React.FC<Props> = ({ student, initialRoom, onExit }) => {
   const [extraTimeNotice, setExtraTimeNotice] = useState<string | null>(null);
   const startedAtRef = useRef<number>(Date.now());
   const timeoutSentRef = useRef<boolean>(false);
+  const stageRef = useRef<HTMLElement | null>(null);
+  const feedbackRef = useRef<HTMLDivElement | null>(null);
   const extraTimeUsedSetRef = useRef<Set<string>>(
     new Set(
       initialRoom.players
@@ -110,6 +112,32 @@ export const MpRoom: React.FC<Props> = ({ student, initialRoom, onExit }) => {
       playVictory();
     }
   }, [room.status]);
+
+  // Al cargar una nueva pregunta, subir suavemente para mostrar pregunta y opciones
+  useEffect(() => {
+    if (room.status !== "playing" || !q) return;
+    window.requestAnimationFrame(() => {
+      if (stageRef.current) {
+        stageRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    });
+  }, [room.status, q?.ordinal]);
+
+  // Al calificarse/revelarse la respuesta, bajar suavemente para ver explicación y botón Siguiente
+  useEffect(() => {
+    if (!q?.correct_text) return;
+    const id = window.setTimeout(() => {
+      const el = feedbackRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      if (rect.bottom > window.innerHeight - 12 || rect.top < 0) {
+        el.scrollIntoView({ behavior: "smooth", block: "end" });
+      }
+    }, 80);
+    return () => window.clearTimeout(id);
+  }, [q?.correct_text, room.status]);
 
   useEffect(() => {
     if (room.status !== "playing" || !q) return;
@@ -401,7 +429,7 @@ export const MpRoom: React.FC<Props> = ({ student, initialRoom, onExit }) => {
 
         {(room.status === "playing" || room.status === "reveal") && q && (
           <div className="mp-play-layout">
-            <section key={q.ordinal} className="stage-card stage-enter">
+            <section key={q.ordinal} ref={stageRef} className="stage-card stage-enter">
               <div className="stage-top-bar">
                 <span className="stage-q-badge">
                   PREGUNTA {q.ordinal}/{room.total_questions} · {q.subject_name}
@@ -510,6 +538,7 @@ export const MpRoom: React.FC<Props> = ({ student, initialRoom, onExit }) => {
                 </div>
               )}
 
+              <div ref={feedbackRef}>
               {q.correct_text && (
                 <div
                   className={`feedback-panel ${
@@ -566,6 +595,7 @@ export const MpRoom: React.FC<Props> = ({ student, initialRoom, onExit }) => {
                   </div>
                 );
               })()}
+              </div>
             </section>
 
             <aside className="card leaderboard-card">
