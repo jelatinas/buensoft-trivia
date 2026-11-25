@@ -11,6 +11,7 @@ import {
   Users,
   Zap
 } from "lucide-react";
+import { APP_VERSION } from "../config/version";
 import type { Category, Student } from "../types/trivia";
 import { InstructionsModal } from "./shared/InstructionsModal";
 import { SoundToggle } from "./shared/SoundToggle";
@@ -46,8 +47,10 @@ export const MainMenu: React.FC<Props> = ({
         <div className="brand-inline">
           <img src="/icon.png" alt="Buensoft Trivia" style={{ width: 38, height: 38, borderRadius: 10 }} />
           <div>
-            <strong>Buensoft Trivia</strong>
-            <span className="tag-pill">Evalua Banco Compartido</span>
+            <strong style={{ display: "flex", alignItems: "center", gap: "0.45rem", flexWrap: "wrap" }}>
+              Buensoft Trivia <span className="tag-pill">ver. {APP_VERSION}</span>
+            </strong>
+            <span className="muted" style={{ fontSize: "0.76rem" }}>Banco compartido con Evalua</span>
           </div>
         </div>
         <div className="topbar-actions">

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Brain, LogIn, Sparkles, UserPlus } from "lucide-react";
+import { APP_VERSION } from "../config/version";
 import { enterStudent, listStudents } from "../services/triviaApi";
 import type { Student } from "../types/trivia";
 
@@ -46,7 +47,9 @@ export const LoginView: React.FC<Props> = ({ pendingRoomCode, onLogin }) => {
         <div className="brand-badge">
           <img src="/icon.png" alt="Buensoft Trivia" style={{ width: 52, height: 52, borderRadius: 12 }} />
           <div>
-            <h1>Buensoft Trivia</h1>
+            <h1 style={{ display: "flex", alignItems: "center", gap: "0.5rem", flexWrap: "wrap" }}>
+              Buensoft Trivia <span className="tag-pill">ver. {APP_VERSION}</span>
+            </h1>
             <p className="muted">Banco de preguntas compartido con Buensoft Evalua</p>
           </div>
         </div>
