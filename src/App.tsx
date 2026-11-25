@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { AdminPanel } from "./components/admin/AdminPanel";
-import { LoginView } from "./components/LoginView";
+import { LoginView, saveDeviceProfile } from "./components/LoginView";
 import { MainMenu } from "./components/MainMenu";
 import { MpHub } from "./components/multiplayer/MpHub";
 import { MpRoom } from "./components/multiplayer/MpRoom";
@@ -159,6 +159,7 @@ export const App: React.FC = () => {
 
   function handleLogin(s: Student, explicitRoom?: string | null) {
     setStudent(s);
+    saveDeviceProfile(s);
     try {
       sessionStorage.setItem(STORAGE_KEY, JSON.stringify(s));
     } catch {

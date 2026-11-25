@@ -28,7 +28,10 @@ import {
 import {
   advanceMpRoom,
   answerMpQuestion,
+  closeMpRoom,
   getMpState,
+  heartbeatMpRoom,
+  leaveMpRoomBeacon,
   setMpReady,
   startMpRoom,
   subscribeMpRoom,
@@ -70,18 +73,35 @@ export const MpRoom: React.FC<Props> = ({ student, initialRoom, onExit }) => {
   const q = room.current_question;
   const myAns = room.my_answer;
 
-  // Suscripción Supabase Realtime (exclusiva de Modo Multijugador)
+  // Suscripción Supabase Realtime + pulso de presencia cada 8s + salida automática al cerrar pestaña/app
   useEffect(() => {
     const refresh = () => {
       getMpState(room.room_id, student.id)
         .then(setRoom)
         .catch(() => {});
     };
+    const sendPulse = () => {
+      heartbeatMpRoom(room.room_id, student.id)
+        .then((next) => {
+          if (next) setRoom(next);
+          else refresh();
+        })
+        .catch(() => {});
+    };
+    const onUnload = () => {
+      leaveMpRoomBeacon(room.room_id, student.id);
+    };
+
     const unsubscribe = subscribeMpRoom(room.room_id, refresh);
-    const poll = window.setInterval(refresh, 4000);
+    sendPulse();
+    const poll = window.setInterval(sendPulse, 8000);
+    window.addEventListener("pagehide", onUnload);
+    window.addEventListener("beforeunload", onUnload);
     return () => {
       unsubscribe();
       window.clearInterval(poll);
+      window.removeEventListener("pagehide", onUnload);
+      window.removeEventListener("beforeunload", onUnload);
     };
   }, [room.room_id, student.id]);
 
@@ -260,6 +280,13 @@ export const MpRoom: React.FC<Props> = ({ student, initialRoom, onExit }) => {
     : Math.max(room.time_limit_sec + (myAns?.extra_time_sec ?? 0), 1);
   const timerPct = Math.max(0, Math.min(100, Math.round((displayTime / displayMax) * 100)));
 
+  async function handleExitRoom() {
+    if (room.status !== "finished") {
+      await closeMpRoom(room.room_id, student.id);
+    }
+    onExit();
+  }
+
   return (
     <div className="page-shell show-stage-bg">
       <header className="topbar">
@@ -281,8 +308,8 @@ export const MpRoom: React.FC<Props> = ({ student, initialRoom, onExit }) => {
             {copied === "code" ? <Check size={16} /> : <Copy size={16} />}
             {copied === "code" ? "Copiado" : `Código: ${room.code}`}
           </button>
-          <button type="button" className="btn btn-ghost" onClick={onExit}>
-            <LogOut size={16} /> Salir
+          <button type="button" className="btn btn-ghost" onClick={() => void handleExitRoom()}>
+            <LogOut size={16} /> {isHost && room.status !== "finished" ? "Cerrar sala" : "Salir"}
           </button>
         </div>
       </header>

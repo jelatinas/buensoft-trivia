@@ -1,4 +1,4 @@
-import { supabase } from "../config/supabase";
+import { SUPABASE_ANON_KEY, SUPABASE_URL, supabase } from "../config/supabase";
 import type {
   AdminQuestion,
   Category,
@@ -212,6 +212,48 @@ export async function getMpState(roomId: string, studentId: string): Promise<MpR
     p_room_id: roomId,
     p_student_id: studentId
   });
+}
+
+export async function closeMpRoom(roomId: string, studentId: string): Promise<void> {
+  try {
+    await callRpc("trivia_mp_leave_room", {
+      p_room_id: roomId,
+      p_student_id: studentId
+    });
+  } catch {
+    // Si aún no se ejecutó 003_room_expiration_and_close.sql, no bloquear la salida
+  }
+}
+
+export async function heartbeatMpRoom(roomId: string, studentId: string): Promise<MpRoomState | null> {
+  try {
+    return await callRpc<MpRoomState>("trivia_mp_heartbeat", {
+      p_room_id: roomId,
+      p_student_id: studentId
+    });
+  } catch {
+    return null;
+  }
+}
+
+export function leaveMpRoomBeacon(roomId: string, studentId: string): void {
+  try {
+    void fetch(`${SUPABASE_URL}/rest/v1/rpc/trivia_mp_leave_room`, {
+      method: "POST",
+      keepalive: true,
+      headers: {
+        apikey: SUPABASE_ANON_KEY,
+        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        p_room_id: roomId,
+        p_student_id: studentId
+      })
+    });
+  } catch {
+    // ignorar
+  }
 }
 
 export function subscribeMpRoom(roomId: string, onChange: () => void): () => void {

@@ -1,8 +1,42 @@
-import React, { useEffect, useState } from "react";
-import { Brain, LogIn, Sparkles, UserPlus } from "lucide-react";
+import React, { useState } from "react";
+import { LogIn, Sparkles, UserPlus, X } from "lucide-react";
 import { APP_VERSION } from "../config/version";
-import { enterStudent, listStudents } from "../services/triviaApi";
+import { enterStudent } from "../services/triviaApi";
 import type { Student } from "../types/trivia";
+
+export const DEVICE_PROFILES_KEY = "buensoft-trivia-device-profiles";
+
+export function loadDeviceProfiles(): Student[] {
+  try {
+    const raw = localStorage.getItem(DEVICE_PROFILES_KEY);
+    const parsed = raw ? JSON.parse(raw) : [];
+    if (!Array.isArray(parsed)) return [];
+    return parsed.filter((item) => item && typeof item.id === "string" && typeof item.name === "string");
+  } catch {
+    return [];
+  }
+}
+
+export function saveDeviceProfile(student: Student): Student[] {
+  const current = loadDeviceProfiles().filter((s) => s.id !== student.id);
+  const next = [{ id: student.id, name: student.name }, ...current].slice(0, 12);
+  try {
+    localStorage.setItem(DEVICE_PROFILES_KEY, JSON.stringify(next));
+  } catch {
+    // ignorar
+  }
+  return next;
+}
+
+function removeDeviceProfile(id: string): Student[] {
+  const next = loadDeviceProfiles().filter((s) => s.id !== id);
+  try {
+    localStorage.setItem(DEVICE_PROFILES_KEY, JSON.stringify(next));
+  } catch {
+    // ignorar
+  }
+  return next;
+}
 
 interface Props {
   pendingRoomCode?: string | null;
@@ -10,18 +44,10 @@ interface Props {
 }
 
 export const LoginView: React.FC<Props> = ({ pendingRoomCode, onLogin }) => {
-  const [students, setStudents] = useState<Student[]>([]);
+  const [profiles, setProfiles] = useState<Student[]>(() => loadDeviceProfiles());
   const [name, setName] = useState("");
-  const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    listStudents()
-      .then(setStudents)
-      .catch((err) => setError(err instanceof Error ? err.message : "Error cargando perfiles."))
-      .finally(() => setLoading(false));
-  }, []);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -33,6 +59,7 @@ export const LoginView: React.FC<Props> = ({ pendingRoomCode, onLogin }) => {
     setError(null);
     try {
       const student = await enterStudent(name);
+      setProfiles(saveDeviceProfile(student));
       onLogin(student);
     } catch (err) {
       setError(err instanceof Error ? err.message : "No se pudo iniciar sesión.");
@@ -65,8 +92,8 @@ export const LoginView: React.FC<Props> = ({ pendingRoomCode, onLogin }) => {
         )}
 
         <p className="login-lead">
-          Entra con tu cuenta de Google desde <strong>Buensoft Workspace</strong> o elige un perfil
-          para guardar tus récords, rachas, logros y estadísticas.
+          Entra con tu cuenta de Google desde <strong>Buensoft Workspace</strong> o usa un perfil
+          guardado en este dispositivo.
         </p>
 
         <a
@@ -79,32 +106,48 @@ export const LoginView: React.FC<Props> = ({ pendingRoomCode, onLogin }) => {
 
         {error && <div className="alert alert-error">{error}</div>}
 
-        <div className="section-block">
-          <h3>Perfiles registrados</h3>
-          {loading ? (
-            <p className="muted">Cargando perfiles de Buensoft Evalua…</p>
-          ) : students.length === 0 ? (
-            <p className="muted">Aún no hay perfiles registrados.</p>
-          ) : (
+        {profiles.length > 0 && (
+          <div className="section-block">
+            <h3>Perfiles en este dispositivo</h3>
             <div className="student-grid">
-              {students.map((s) => (
-                <button
-                  key={s.id}
-                  type="button"
-                  className="student-pill"
-                  onClick={() => onLogin(s)}
-                >
-                  <span className="avatar-circle">{s.name.slice(0, 2).toUpperCase()}</span>
-                  <span>{s.name}</span>
-                  <LogIn size={16} />
-                </button>
+              {profiles.map((s) => (
+                <div key={s.id} className="student-pill" style={{ paddingRight: "0.45rem" }}>
+                  <button
+                    type="button"
+                    onClick={() => onLogin(s)}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.5rem",
+                      background: "transparent",
+                      border: "none",
+                      cursor: "pointer",
+                      flex: 1,
+                      textAlign: "left",
+                      padding: 0
+                    }}
+                  >
+                    <span className="avatar-circle">{s.name.slice(0, 2).toUpperCase()}</span>
+                    <span>{s.name}</span>
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-icon"
+                    title="Quitar perfil de este dispositivo"
+                    aria-label={`Quitar ${s.name}`}
+                    style={{ padding: "0.25rem", borderRadius: 8 }}
+                    onClick={() => setProfiles(removeDeviceProfile(s.id))}
+                  >
+                    <X size={14} />
+                  </button>
+                </div>
               ))}
             </div>
-          )}
-        </div>
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} className="section-block">
-          <h3>O entra con un nombre nuevo</h3>
+          <h3>Crear o entrar con nombre</h3>
           <div className="inline-form">
             <input
               type="text"
