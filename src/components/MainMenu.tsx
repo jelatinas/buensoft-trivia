@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   AlertTriangle,
   BarChart3,
   BookOpen,
-  Brain,
   Database,
+  HelpCircle,
   LogOut,
   Play,
   Trophy,
@@ -12,6 +12,7 @@ import {
   Zap
 } from "lucide-react";
 import type { Category, Student } from "../types/trivia";
+import { InstructionsModal } from "./shared/InstructionsModal";
 import { SoundToggle } from "./shared/SoundToggle";
 import { ThemePicker } from "./shared/ThemePicker";
 
@@ -36,6 +37,7 @@ export const MainMenu: React.FC<Props> = ({
   onOpenAdmin,
   onLogout
 }) => {
+  const [showInstructions, setShowInstructions] = useState(false);
   const totalQuestions = categories.reduce((acc, c) => acc + (c.question_count || 0), 0);
 
   return (
@@ -49,6 +51,9 @@ export const MainMenu: React.FC<Props> = ({
           </div>
         </div>
         <div className="topbar-actions">
+          <button type="button" className="btn btn-ghost" onClick={() => setShowInstructions(true)}>
+            <HelpCircle size={18} /> Instrucciones
+          </button>
           <button type="button" className="btn btn-ghost" onClick={onOpenStats}>
             <BarChart3 size={18} /> Estadísticas
           </button>
@@ -162,6 +167,7 @@ export const MainMenu: React.FC<Props> = ({
           </article>
         </section>
       </main>
+      {showInstructions && <InstructionsModal onClose={() => setShowInstructions(false)} />}
     </div>
   );
 };
