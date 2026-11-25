@@ -459,24 +459,37 @@ export const MpRoom: React.FC<Props> = ({ student, initialRoom, onExit }) => {
               {isHost && (() => {
                 const allAnswered =
                   room.players.length > 0 && room.answered_players_count >= room.players.length;
-                const canAdvance = room.status === "reveal" || allAnswered || roomTimeLeft <= 0;
-                const label = !canAdvance
-                  ? `Esperando respuestas (${room.answered_players_count}/${room.players.length}) · ${roomTimeLeft}s`
-                  : room.status === "playing"
-                  ? "Cerrar pregunta y revelar"
-                  : q.ordinal >= room.total_questions
-                  ? "Finalizar partida y ver podio"
-                  : "Siguiente pregunta";
+                const canClose = room.status === "playing" && (allAnswered || roomTimeLeft <= 0);
+                const canNext = room.status === "reveal";
                 return (
-                  <div className="feedback-actions">
+                  <div
+                    className="feedback-actions"
+                    style={{ justifyContent: "space-between", flexWrap: "wrap", gap: "0.75rem" }}
+                  >
+                    <div>
+                      {room.status === "playing" && (
+                        <button
+                          type="button"
+                          className="btn btn-ghost"
+                          disabled={busy || !canClose}
+                          onClick={handleAdvance}
+                        >
+                          {canClose
+                            ? "Cerrar pregunta y revelar"
+                            : `Esperando respuestas (${room.answered_players_count}/${room.players.length}) · ${roomTimeLeft}s`}
+                        </button>
+                      )}
+                    </div>
                     <button
                       type="button"
                       className="btn btn-gold btn-lg"
-                      disabled={busy || !canAdvance}
+                      disabled={busy || !canNext}
                       onClick={handleAdvance}
                     >
-                      {label}
-                      {canAdvance && <ArrowRight size={18} />}
+                      {q.ordinal >= room.total_questions
+                        ? "Finalizar partida y ver podio"
+                        : "Siguiente pregunta"}
+                      <ArrowRight size={18} />
                     </button>
                   </div>
                 );
